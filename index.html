@@ -2,93 +2,240 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<title>كشف العائلة</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SMOU GROUP | فيديوهات الخشبية - Wooden Videos </title>
+
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --bg1:#050b14;
+  --bg2:#0a1c33;
+  --glass: rgba(255,255,255,.08);
+  --border: rgba(255,255,255,.18);
+  --text:#ffffff;
+  --muted:rgba(255,255,255,.75);
+}
+*{box-sizing:border-box}
 body{
-  font-family: Tahoma, Arial;
-  background:#f7f7f7;
-  padding:20px;
+  margin:0;
+  font-family:"Tajawal",sans-serif;
+  color:var(--text);
+  background:
+  radial-gradient(800px 400px at 20% 20%, rgba(0,150,255,.15), transparent 60%),
+  linear-gradient(180deg,var(--bg1),var(--bg2));
+  min-height:100vh;
 }
-h2{margin-bottom:10px}
-input{
-  padding:10px;
-  width:300px;
-  font-size:16px;
+.wrap{max-width:1100px;margin:auto;padding:20px}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--glass);
+  border:1px solid var(--border);
+  padding:14px;
+  border-radius:18px;
+  backdrop-filter:blur(14px);
 }
-table{
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{width:45px}
+.pageTitle{text-align:center}
+.pageTitle h1{margin:0;font-size:18px}
+.branch{font-size:12px;color:var(--muted)}
+
+.card{
+  margin-top:20px;
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:18px;
+  backdrop-filter:blur(14px);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:16px;
+}
+
+.videoIcon{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:18px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.3s;
+}
+.videoIcon:hover{transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.4);}
+.videoIcon img{
   width:100%;
-  border-collapse:collapse;
-  margin-top:15px;
-  background:#fff;
+  aspect-ratio:9/16;
+  object-fit:cover;
 }
-th,td{
-  border:1px solid #ccc;
+.caption{
   padding:10px;
-  text-align:right;
+  text-align:center;
+  font-weight:700;
 }
-th{
-  background:#0f5c6e;
+
+.playerWrap{display:none;margin-top:20px}
+.playerBox{
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+.playerTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px;
+  background:rgba(255,255,255,.06);
+}
+iframe{
+  width:100%;
+  aspect-ratio:9/16;
+  border:0;
+}
+
+button{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.2);
   color:#fff;
+  padding:6px 14px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:600;
 }
-tr:nth-child(even){background:#f2f2f2}
-.note{color:#666;margin-top:8px}
+button:hover{background:rgba(255,255,255,.25)}
 </style>
 </head>
 
 <body>
+<div class="wrap">
 
-<h2>🔎 البحث باسم العائلة</h2>
+<div class="topbar">
+  <div class="brand">
+    <img src="logo.png">
+    <div>
+      <div style="font-weight:800">SMOU GROUP</div>
+      <div style="font-size:12px;color:var(--muted)">Silver Cabin</div>
+    </div>
+  </div>
 
-<input id="search" placeholder="اكتب اسم العائلة" />
-<div class="note" id="info">يرجى رفع ملف البيانات</div>
-<br><br>
-<input type="file" id="file" accept=".csv">
+  <div class="pageTitle">
+    <h1>فيديوهات الخشبية  - Wooden gold Videos</h1>
+  </div>
 
-<table id="table" style="display:none">
-  <thead></thead>
-  <tbody></tbody>
-</table>
+  <div class="branch">UAE</div>
+</div>
+
+<div class="card">
+
+<div class="grid" id="grid"></div>
+
+<div class="playerWrap" id="playerWrap">
+  <div class="playerBox">
+    <div class="playerTop">
+      <div id="videoTitle"></div>
+      <button onclick="backToList()">رجوع للقائمة</button>
+    </div>
+    <div id="iframeBox"></div>
+  </div>
+</div>
+
+</div>
+</div>
 
 <script>
-let data=[], headers=[];
-const FAMILY_COL = "العائلة";
 
-document.getElementById("file").addEventListener("change", async e=>{
-  const text = await e.target.files[0].text();
-  const lines = text.trim().split("\n");
-  headers = lines[0].split(",");
-  data = lines.slice(1).map(l=>{
-    let obj={};
-    l.split(",").forEach((v,i)=>obj[headers[i]]=v);
-    return obj;
-  });
-  document.getElementById("info").innerText="تم تحميل البيانات";
-});
+// جدول الفيديوهات
+// جدول الفيديوهات
+const videos = [
+{name:"G1",url:"https://youtube.com/shorts/K-3hq1aoaiM"},
+{name:"G2",url:"https://youtube.com/shorts/P8KH57V2bn8"},
+{name:"G3",url:"https://youtube.com/shorts/4SSNo4pfu7o"},
+{name:"G4",url:"https://youtube.com/shorts/0OETXd-JEI0"},
+{name:"G5",url:"https://youtube.com/shorts/syI9ew4EWBU"},
+{name:"G6",url:"https://youtube.com/shorts/WztoJwsGwKY"},
+{name:"G7",url:"https://youtube.com/shorts/-AtNudWhFQM"},
+{name:"G8",url:"https://youtube.com/shorts/GW_0ivX-49A"},
+{name:"G9",url:"https://youtube.com/shorts/RIIAlGUbWf0"},
+{name:"G10",url:"https://youtube.com/shorts/sX7A807oprA"},
+{name:"G11",url:"https://youtube.com/shorts/z0ofj_pYgtw"},
+{name:"G12",url:"https://youtube.com/shorts/UO_BL4Y8_A4"},
+{name:"G13",url:"https://youtube.com/shorts/Bix_a6rB1_w"},
+{name:"G14",url:"https://youtube.com/shorts/Bix_a6rB1_w"},
+{name:"G15",url:"https://youtube.com/shorts/j-tmy5dl-Co"},
+{name:"G16",url:"https://youtube.com/shorts/uIWCIHgVHqo"},
+{name:"G17",url:"https://youtube.com/shorts/7qeiY9JGMlE"},
+{name:"G18",url:"https://youtube.com/shorts/5zsZCVL53F4"},
+{name:"G19",url:"https://youtube.com/shorts/JgNBgTn62_0"},
+{name:"G20",url:"https://youtube.com/shorts/Px-ng89j2q0"},
+{name:"G21",url:"https://youtube.com/shorts/LCirHoI_WZM?feature=share"},
+{name:"G22",url:"https://youtube.com/shorts/PkdD8teTcug"},
+{name:"G23",url:"https://youtube.com/shorts/MZ9RmS5NnuQ"},
+{name:"G24",url:"https://youtube.com/shorts/hwjpux1byOc"},
+{name:"G25",url:"https://youtube.com/shorts/gMyZ9-ur4nQ"},
+{name:"G26",url:"https://youtube.com/shorts/7-lfQYKGyXc"},
+{name:"G27",url:"https://youtube.com/shorts/3kXkTcz_vpw"},
+{name:"G28",url:"https://youtube.com/shorts/qkNQ-Oalx60"},
+{name:"G29",url:"https://youtube.com/shorts/7nB8v_SKCPs"},
+{name:"G30",url:"https://youtube.com/shorts/z3kHCbf9wjQ"},
+{name:"G31",url:"https://youtube.com/shorts/bSaYA0ALwcc"},
+{name:"G32",url:"https://youtube.com/shorts/8fupaMxPweY"},
+{name:"G33",url:"https://youtube.com/shorts/o3L7ryaDL84"}
+];
 
-document.getElementById("search").addEventListener("input",()=>{
-  const q = document.getElementById("search").value.trim();
-  const table = document.getElementById("table");
-  const thead = table.querySelector("thead");
-  const tbody = table.querySelector("tbody");
-
-  if(!q){ table.style.display="none"; return; }
-
-  const norm = s => (s||"").toString().trim().replace(/\s+/g," ");
-const res = data.filter(r => norm(r[FAMILY_COL]).includes(norm(q)));
-
-  if(!res.length){
-    document.getElementById("info").innerText="لا توجد نتائج";
-    table.style.display="none";
-    return;
+// استخراج ID من Shorts
+function getYouTubeId(url){
+  const u = new URL(url);
+  if(u.pathname.includes("/shorts/")){
+    return u.pathname.split("/shorts/")[1].split("?")[0];
   }
+  if(u.searchParams.get("v")) return u.searchParams.get("v");
+  return "";
+}
 
-  thead.innerHTML="<tr>"+headers.map(h=>`<th>${h}</th>`).join("")+"</tr>";
-  tbody.innerHTML=res.map(r=>"<tr>"+headers.map(h=>`<td>${r[h]||""}</td>`).join("")+"</tr>").join("");
-  table.style.display="table";
-  document.getElementById("info").innerText=`عدد النتائج: ${res.length}`;
-});
+const grid=document.getElementById("grid");
+const playerWrap=document.getElementById("playerWrap");
+const iframeBox=document.getElementById("iframeBox");
+const videoTitle=document.getElementById("videoTitle");
+
+function render(){
+  grid.innerHTML="";
+  videos.forEach((v,i)=>{
+    const id=getYouTubeId(v.url);
+    const thumb=`https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+    grid.innerHTML+=`
+      <div class="videoIcon" onclick="openVideo(${i})">
+        <img src="${thumb}">
+        <div class="caption">${v.name}</div>
+      </div>`;
+  });
+}
+
+function openVideo(index){
+  const v=videos[index];
+  const id=getYouTubeId(v.url);
+  videoTitle.textContent=v.name;
+  iframeBox.innerHTML=`
+    <iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0"
+    allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+  grid.style.display="none";
+  playerWrap.style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function backToList(){
+  iframeBox.innerHTML="";
+  playerWrap.style.display="none";
+  grid.style.display="grid";
+}
+
+render();
 </script>
 
 </body>
 </html>
+
