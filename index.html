@@ -3,127 +3,181 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SMOU GROUP | فيديوهات الخشبية - Wooden Videos </title>
+<title>SMOU GROUP | فيديوهات الخشبية - Wooden Videos</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg1:#03060d;
-  --bg2:#081527;
+  --bg1:#0b0704;
+  --bg2:#20130a;
+  --bg3:#0e0805;
   --sky:#8fd6ff;
   --sky-light:#d7f1ff;
-  --sky-deep:#3d8fd0;
+  --wood-1:#f6dcb8;
+  --wood-2:#d8a35e;
+  --wood-3:#a56a34;
+  --wood-deep:#5c3418;
   --ivory:#ffffff;
-  --text:#eef6ff;
-  --muted:rgba(238,246,255,.7);
-  --border:rgba(143,214,255,.22);
-  --glass: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
-  --shadow:0 18px 45px rgba(0,0,10,.40);
-  --shadowStrong:0 30px 80px rgba(0,0,10,.55);
+  --text:#fbeee0;
+  --muted:rgba(251,238,224,.68);
+  --border:rgba(216,163,94,.24);
+  --border-strong:rgba(246,220,184,.5);
+  --glass: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.015));
+  --shadow:0 18px 45px rgba(0,0,0,.42);
+  --shadowStrong:0 30px 90px rgba(0,0,0,.62);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+::selection{background:rgba(216,163,94,.32); color:#2a1608}
+
 body{
   margin:0;
   font-family:"Tajawal",sans-serif;
   color:var(--text);
   background:
-    radial-gradient(900px 420px at 18% 8%, rgba(143,214,255,.14), transparent 55%),
-    radial-gradient(800px 380px at 85% 18%, rgba(215,241,255,.08), transparent 55%),
-    linear-gradient(180deg,var(--bg1),var(--bg2) 55%,#050d1a);
+    radial-gradient(1000px 480px at 15% 6%, rgba(216,163,94,.16), transparent 55%),
+    radial-gradient(900px 420px at 88% 14%, rgba(246,220,184,.08), transparent 55%),
+    radial-gradient(700px 500px at 50% 100%, rgba(92,52,24,.22), transparent 60%),
+    linear-gradient(180deg,var(--bg1),var(--bg2) 55%,var(--bg3));
   min-height:100vh;
   position:relative;
   overflow-x:hidden;
 }
 
-body::before,
-body::after{
+body::before{
   content:"";
-  position:fixed;
-  inset:auto;
-  width:32vw;
-  height:32vw;
-  border-radius:50%;
-  filter:blur(110px);
-  opacity:.14;
+  position:fixed; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
   pointer-events:none;
   z-index:0;
-  animation:blobFloat 12s ease-in-out infinite;
+  mix-blend-mode:overlay;
 }
-body::before{ top:-8vw; right:-6vw; background:radial-gradient(circle, rgba(143,214,255,.9), transparent 64%); }
-body::after{ left:-8vw; bottom:-10vw; background:radial-gradient(circle, rgba(255,255,255,.3), transparent 60%); animation-delay:-5s; }
-@keyframes blobFloat{ 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-14px) scale(1.05)} }
 
-.wrap{position:relative; z-index:1; max-width:1100px;margin:auto;padding:20px}
+.orb{
+  position:fixed;
+  width:34vw;height:34vw;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:.16;
+  pointer-events:none;
+  z-index:0;
+  animation:blobFloat 14s ease-in-out infinite;
+}
+.orb.a{top:-10vw; right:-8vw; background:radial-gradient(circle, rgba(216,163,94,.9), transparent 65%);}
+.orb.b{left:-10vw; bottom:-12vw; width:30vw;height:30vw; background:radial-gradient(circle, rgba(246,220,184,.4), transparent 62%); animation-delay:-6s;}
+@keyframes blobFloat{ 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-18px) scale(1.06)} }
 
+.wrap{position:relative; z-index:1; max-width:1180px;margin:auto;padding:22px}
+
+/* ===== TOPBAR ===== */
 .topbar{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:14px;
+  gap:16px;
   flex-wrap:wrap;
   background:var(--glass);
   border:1px solid var(--border);
-  padding:16px 18px;
-  border-radius:20px;
-  backdrop-filter:blur(18px) saturate(1.2);
-  -webkit-backdrop-filter:blur(18px) saturate(1.2);
+  padding:16px 20px;
+  border-radius:22px;
+  backdrop-filter:blur(20px) saturate(1.25);
+  -webkit-backdrop-filter:blur(20px) saturate(1.25);
   box-shadow:var(--shadow);
+  opacity:0;
+  animation:dropIn .7s cubic-bezier(.2,.8,.2,1) .05s forwards;
 }
-.brand{display:flex;align-items:center;gap:12px}
+@keyframes dropIn{ from{opacity:0; transform:translateY(-14px)} to{opacity:1; transform:translateY(0)} }
+
+.brand{display:flex;align-items:center;gap:13px}
 .brand .logoBox{
-  width:52px;height:52px;
+  width:54px;height:54px;
   border-radius:16px;
   background:var(--glass);
   border:1px solid var(--border);
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
-  box-shadow:0 12px 22px rgba(0,0,10,.3);
+  box-shadow:0 12px 24px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.12);
+  position:relative;
 }
-.brand img{width:70%;height:70%;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,10,.4));}
-.brand .name{font-weight:800; font-size:15px; color:var(--ivory);}
-.brand .sub{font-size:12px;color:var(--muted); letter-spacing:.5px; margin-top:2px;}
+.brand .logoBox::after{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(120deg, transparent 30%, rgba(246,220,184,.28) 48%, transparent 66%);
+  transform:translateX(-120%);
+  animation:sheen 5s ease-in-out infinite;
+}
+@keyframes sheen{ 0%,60%{transform:translateX(-120%)} 100%{transform:translateX(120%)} }
+.brand img{width:70%;height:70%;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,.45)); position:relative; z-index:1;}
+.brand .name{font-weight:800; font-size:15px; color:var(--ivory); letter-spacing:.3px;}
+.brand .sub{font-size:11.5px;color:var(--muted); letter-spacing:1px; margin-top:2px; text-transform:uppercase;}
 
 .pageTitle{text-align:center}
 .pageTitle h1{
   margin:0;
   font-size:17px;
   font-weight:800;
-  background:linear-gradient(90deg,#ffffff 0%,#d7f1ff 40%,#8fd6ff 70%,#ffffff 100%);
+  letter-spacing:.4px;
+  background:linear-gradient(100deg,#a56a34 0%, #f6dcb8 22%, #fbeee0 45%, #d8a35e 60%, #f6dcb8 82%, #a56a34 100%);
+  background-size:220% auto;
   -webkit-background-clip:text;
   background-clip:text;
   color:transparent;
+  animation:shimmerText 6s linear infinite;
 }
+@keyframes shimmerText{ 0%{background-position:0% 50%} 100%{background-position:220% 50%} }
+.pageTitle .count{
+  margin-top:4px;
+  font-size:11px;
+  color:var(--muted);
+  letter-spacing:.5px;
+}
+.pageTitle .count b{color:var(--wood-1); font-weight:800;}
+
 .branch{
   font-size:12px;
-  color:var(--sky-light);
+  color:var(--wood-1);
   font-weight:700;
-  padding:8px 14px;
+  padding:9px 16px;
   border-radius:999px;
-  border:1px solid var(--border);
+  border:1px solid var(--border-strong);
   background:var(--glass);
-  letter-spacing:1px;
+  letter-spacing:1.5px;
+  position:relative;
+}
+.branch::before{
+  content:"";
+  position:absolute; inset:-1px;
+  border-radius:999px;
+  padding:1px;
+  background:linear-gradient(120deg, transparent, rgba(216,163,94,.75), transparent);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:.7;
 }
 
+/* ===== CARD / GRID ===== */
 .card{
-  margin-top:22px;
+  margin-top:24px;
   background:var(--glass);
   border:1px solid var(--border);
-  border-radius:24px;
-  padding:20px;
-  backdrop-filter:blur(22px) saturate(1.15);
-  -webkit-backdrop-filter:blur(22px) saturate(1.15);
+  border-radius:26px;
+  padding:22px;
+  backdrop-filter:blur(24px) saturate(1.15);
+  -webkit-backdrop-filter:blur(24px) saturate(1.15);
   box-shadow:var(--shadowStrong);
   position:relative;
   overflow:hidden;
+  opacity:0;
+  animation:dropIn .7s cubic-bezier(.2,.8,.2,1) .18s forwards;
 }
 .card::after{
   content:"";
   position:absolute; top:0; left:0; right:0; height:1px;
-  background:linear-gradient(90deg, transparent, rgba(143,214,255,.6), transparent);
+  background:linear-gradient(90deg, transparent, rgba(216,163,94,.75), transparent);
 }
 
 .grid{
@@ -139,111 +193,229 @@ body::after{ left:-8vw; bottom:-10vw; background:radial-gradient(circle, rgba(25
   border-radius:18px;
   overflow:hidden;
   cursor:pointer;
-  transition:transform .25s cubic-bezier(.2,.8,.2,1), border-color .25s ease, box-shadow .25s ease;
+  transition:transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s ease, box-shadow .3s ease;
+  opacity:0;
+  transform:translateY(16px) scale(.97);
+  will-change:transform;
 }
+.videoIcon.show{
+  animation:cardIn .55s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes cardIn{ to{opacity:1; transform:translateY(0) scale(1)} }
+
 .videoIcon::before{
   content:"";
   position:absolute; inset:0; z-index:2;
-  background:linear-gradient(180deg, rgba(255,255,255,.14), transparent 40%);
+  background:linear-gradient(180deg, rgba(255,255,255,.14), transparent 42%);
   pointer-events:none;
 }
-.videoIcon:hover{
-  transform:translateY(-6px);
-  border-color:rgba(143,214,255,.55);
-  box-shadow:0 22px 44px rgba(0,0,10,.5), 0 0 24px rgba(143,214,255,.16);
+.videoIcon::after{
+  content:"";
+  position:absolute; inset:0; z-index:2;
+  background:linear-gradient(120deg, transparent 35%, rgba(246,220,184,.26) 50%, transparent 65%);
+  transform:translateX(-140%);
+  pointer-events:none;
 }
-.videoIcon img{
+.videoIcon:hover::after{ animation:sheen2 1s ease; }
+@keyframes sheen2{ to{ transform:translateX(140%);} }
+
+.videoIcon:hover{
+  transform:translateY(-7px) scale(1.015);
+  border-color:rgba(216,163,94,.65);
+  box-shadow:0 24px 48px rgba(0,0,0,.55), 0 0 26px rgba(216,163,94,.2);
+}
+.videoIcon:focus-visible{
+  outline:2px solid var(--wood-2);
+  outline-offset:2px;
+}
+
+.thumbWrap{position:relative; width:100%; aspect-ratio:9/16; background:linear-gradient(160deg,#231409,#0e0805); overflow:hidden;}
+.thumbWrap img{
   width:100%;
-  aspect-ratio:9/16;
+  height:100%;
   object-fit:cover;
   display:block;
-  transition:transform .3s ease;
+  opacity:0;
+  transition:opacity .4s ease, transform .35s ease;
 }
-.videoIcon:hover img{transform:scale(1.06);}
+.thumbWrap img.loaded{opacity:1;}
+.videoIcon:hover .thumbWrap img{transform:scale(1.07);}
+
+.skeleton{
+  position:absolute; inset:0;
+  background:linear-gradient(100deg, rgba(255,255,255,.03) 20%, rgba(246,220,184,.1) 40%, rgba(255,255,255,.03) 60%);
+  background-size:200% 100%;
+  animation:skeletonMove 1.4s ease-in-out infinite;
+}
+@keyframes skeletonMove{ 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+.thumbWrap img.loaded ~ .skeleton{display:none;}
+
 .playIcon{
   position:absolute;
   top:50%; left:50%;
-  transform:translate(-50%,-50%);
-  width:38px;height:38px;
+  transform:translate(-50%,-50%) scale(.85);
+  width:42px;height:42px;
   border-radius:50%;
-  background:rgba(4,9,18,.55);
-  border:1px solid rgba(255,255,255,.35);
-  backdrop-filter:blur(6px);
+  background:rgba(11,7,4,.55);
+  border:1px solid rgba(246,220,184,.45);
+  backdrop-filter:blur(8px);
   display:flex; align-items:center; justify-content:center;
   z-index:3;
   opacity:0;
-  transition:opacity .25s ease;
+  transition:opacity .25s ease, transform .25s ease;
 }
-.videoIcon:hover .playIcon{opacity:1;}
-.playIcon svg{width:14px;height:14px;fill:#fff;margin-inline-start:2px;}
+.playIcon .ring{
+  position:absolute; inset:-1px;
+  border-radius:50%;
+  border:1px solid rgba(216,163,94,.65);
+  opacity:0;
+}
+.videoIcon:hover .playIcon{opacity:1; transform:translate(-50%,-50%) scale(1);}
+.videoIcon:hover .playIcon .ring{opacity:1; animation:pulseRing 1.3s ease-out infinite;}
+@keyframes pulseRing{ 0%{transform:scale(1); opacity:.7;} 100%{transform:scale(1.7); opacity:0;} }
+.playIcon svg{width:15px;height:15px;fill:#fff;margin-inline-start:2px; position:relative; z-index:1;}
 
 .caption{
-  padding:10px;
+  padding:11px;
   text-align:center;
   font-weight:700;
   font-size:13.5px;
-  color:var(--sky-light);
+  color:var(--wood-1);
   border-top:1px solid var(--border);
+  letter-spacing:.4px;
+  position:relative;
+  z-index:1;
+  background:linear-gradient(180deg, transparent, rgba(0,0,0,.15));
 }
 
-.playerWrap{display:none;margin-top:22px}
-.playerBox{
-  border-radius:22px;
-  overflow:hidden;
-  border:1px solid var(--border);
-  background:var(--glass);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  box-shadow:var(--shadowStrong);
+/* ===== CINEMATIC LIGHTBOX PLAYER ===== */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(10,6,3,.84);
+  backdrop-filter:blur(10px) saturate(1.1);
+  -webkit-backdrop-filter:blur(10px) saturate(1.1);
+  z-index:50;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  opacity:0;
+  transition:opacity .3s ease;
 }
+.overlay.open{display:flex;}
+.overlay.visible{opacity:1;}
+
+.playerBox{
+  width:min(92vw, 420px);
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid var(--border-strong);
+  background:linear-gradient(180deg, rgba(45,26,13,.9), rgba(16,9,5,.96));
+  box-shadow:0 40px 120px rgba(0,0,0,.72), 0 0 0 1px rgba(255,255,255,.03) inset;
+  transform:scale(.92) translateY(18px);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1);
+  position:relative;
+}
+.overlay.visible .playerBox{transform:scale(1) translateY(0);}
+.playerBox::before{
+  content:"";
+  position:absolute; top:0; left:0; right:0; height:1px;
+  background:linear-gradient(90deg, transparent, rgba(246,220,184,.85), transparent);
+  z-index:2;
+}
+
 .playerTop{
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:14px 16px;
-  background:rgba(255,255,255,.05);
+  background:rgba(255,255,255,.04);
   border-bottom:1px solid var(--border);
+  position:relative;
+  z-index:1;
 }
-#videoTitle{font-weight:800; color:var(--ivory); font-size:15px;}
+#videoTitle{font-weight:800; color:var(--ivory); font-size:15px; letter-spacing:.4px;}
+
+.closeBtn{
+  width:32px;height:32px;
+  border-radius:50%;
+  border:1px solid var(--border-strong);
+  background:rgba(255,255,255,.05);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  color:#fff;
+  transition:background .2s ease, transform .2s ease, border-color .2s ease;
+  padding:0;
+}
+.closeBtn:hover{background:rgba(255,90,90,.18); border-color:rgba(255,120,120,.5); transform:rotate(90deg);}
+.closeBtn svg{width:14px;height:14px;}
+
+.stageWrap{
+  position:relative;
+  background:#000;
+}
+.stageWrap::before{
+  content:"";
+  position:absolute; inset:0;
+  box-shadow:inset 0 0 80px rgba(0,0,0,.65);
+  z-index:2;
+  pointer-events:none;
+}
 iframe{
   width:100%;
   aspect-ratio:9/16;
   border:0;
   display:block;
-  max-height:80vh;
+  max-height:78vh;
   margin:0 auto;
+  position:relative;
+  z-index:1;
 }
 
-button{
-  background:linear-gradient(160deg, rgba(255,255,255,.1), rgba(255,255,255,.02));
-  border:1px solid var(--border);
-  color:#fff;
-  font-family:inherit;
-  padding:9px 16px;
-  border-radius:12px;
-  cursor:pointer;
-  font-weight:700;
-  font-size:13px;
-  transition:transform .2s ease, border-color .2s ease, background .2s ease;
+.playerLoading{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  z-index:3;
+  color:var(--muted);
+  font-size:12px;
+  gap:8px;
+  flex-direction:column;
 }
-button:hover{
-  background:linear-gradient(160deg, rgba(255,255,255,.16), rgba(143,214,255,.08));
-  border-color:rgba(143,214,255,.55);
-  transform:translateY(-2px);
+.spinner{
+  width:26px;height:26px;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.15);
+  border-top-color:var(--wood-2);
+  animation:spin .8s linear infinite;
+}
+@keyframes spin{ to{transform:rotate(360deg)} }
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:9px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg, rgba(216,163,94,.45), rgba(246,220,184,.25)); border-radius:20px;}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
 }
 
 @media (max-width:520px){
   .wrap{padding:14px}
-  .topbar{padding:12px 14px; border-radius:16px; flex-direction:column; align-items:stretch; text-align:center;}
+  .topbar{padding:12px 14px; border-radius:18px; flex-direction:column; align-items:stretch; text-align:center;}
   .pageTitle{order:-1}
-  .card{padding:14px; border-radius:18px}
-  .grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:12px}
-  iframe{max-height:70vh}
+  .card{padding:14px; border-radius:20px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(112px,1fr)); gap:11px}
+  .playerBox{width:100%;}
+  iframe{max-height:68vh}
 }
 </style>
 </head>
 
 <body>
+<div class="orb a"></div>
+<div class="orb b"></div>
+
 <div class="wrap">
 
 <div class="topbar">
@@ -257,31 +429,40 @@ button:hover{
 
   <div class="pageTitle">
     <h1>فيديوهات الخشبية — Wooden Videos</h1>
+    <div class="count"><b id="vidCount">0</b> فيديو</div>
   </div>
 
   <div class="branch">UAE</div>
 </div>
 
 <div class="card">
-
 <div class="grid" id="grid"></div>
+</div>
 
-<div class="playerWrap" id="playerWrap">
+</div>
+
+<!-- Cinematic Lightbox -->
+<div class="overlay" id="overlay">
   <div class="playerBox">
     <div class="playerTop">
       <div id="videoTitle"></div>
-      <button onclick="backToList()">رجوع للقائمة</button>
+      <button class="closeBtn" onclick="closePlayer()" aria-label="إغلاق">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
     </div>
-    <div id="iframeBox"></div>
+    <div class="stageWrap" id="stageWrap">
+      <div class="playerLoading" id="playerLoading">
+        <div class="spinner"></div>
+        <span>جاري التحميل...</span>
+      </div>
+      <div id="iframeBox"></div>
+    </div>
   </div>
-</div>
-
-</div>
 </div>
 
 <script>
 
-// جدول الفيديوهات
+// جدول الفيديوهات — لم يتم تغيير أي رابط أو اسم
 const videos = [
 {name:"W1",url:"https://youtube.com/shorts/3b-_1ZfMAqs"},
 {name:"W2",url:"https://youtube.com/shorts/B1IFbalhWkk"},
@@ -319,52 +500,109 @@ const videos = [
   {name:"W34",url:"https://youtube.com/shorts/kuk40ke8OnY"},
   {name:"W35",url:"https://youtube.com/shorts/psiucHiS5mI"}
 ];
-// استخراج ID من Shorts
+
+// استخراج ID من رابط الشورتس (مع معالجة احتياطية للروابط غير القياسية)
 function getYouTubeId(url){
-  const u = new URL(url);
-  if(u.pathname.includes("/shorts/")){
-    return u.pathname.split("/shorts/")[1].split("?")[0];
-  }
-  if(u.searchParams.get("v")) return u.searchParams.get("v");
-  return "";
+  try{
+    const u = new URL(url);
+    if(u.pathname.includes("/shorts/")){
+      return u.pathname.split("/shorts/")[1].split("?")[0];
+    }
+    if(u.searchParams.get("v")) return u.searchParams.get("v");
+  }catch(e){ /* رابط غير قياسي — نكمل بالطريقة الاحتياطية بالأسفل */ }
+
+  const m = url.match(/shorts\/([A-Za-z0-9_-]{6,})/);
+  return m ? m[1] : "";
 }
 
 const grid=document.getElementById("grid");
-const playerWrap=document.getElementById("playerWrap");
+const overlay=document.getElementById("overlay");
 const iframeBox=document.getElementById("iframeBox");
 const videoTitle=document.getElementById("videoTitle");
+const playerLoading=document.getElementById("playerLoading");
+const vidCount=document.getElementById("vidCount");
 
 function render(){
   grid.innerHTML="";
-  videos.forEach((v,i)=>{
+  vidCount.textContent = videos.length;
+
+  // ترتيب تنازلي: W35 بالأعلى، W1 بالأسفل
+  const order = videos.map((_, i) => i).reverse();
+
+  order.forEach((i)=>{
+    const v = videos[i];
     const id=getYouTubeId(v.url);
     const thumb=`https://img.youtube.com/vi/${id}/hqdefault.jpg`;
-    grid.innerHTML+=`
-      <div class="videoIcon" onclick="openVideo(${i})">
-        <img src="${thumb}">
-        <div class="playIcon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <div class="caption">${v.name}</div>
-      </div>`;
+
+    const cell = document.createElement("div");
+    cell.className = "videoIcon";
+    cell.tabIndex = 0;
+    cell.setAttribute("role","button");
+    cell.setAttribute("aria-label", "تشغيل " + v.name);
+    cell.innerHTML = `
+      <div class="thumbWrap">
+        <img loading="lazy" src="${thumb}" alt="${v.name}">
+        <div class="skeleton"></div>
+        <div class="playIcon"><span class="ring"></span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="caption">${v.name}</div>`;
+
+    cell.addEventListener("click", ()=>openVideo(i));
+    cell.addEventListener("keydown", (e)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); openVideo(i);} });
+
+    const img = cell.querySelector("img");
+    img.addEventListener("load", ()=> img.classList.add("loaded"));
+
+    grid.appendChild(cell);
   });
+
+  // ظهور تدريجي عند التمرير
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach((entry)=>{
+      if(entry.isIntersecting){
+        const el = entry.target;
+        const delay = (Array.from(grid.children).indexOf(el) % 12) * 45;
+        el.style.animationDelay = delay + "ms";
+        el.classList.add("show");
+        io.unobserve(el);
+      }
+    });
+  }, {threshold:0.12, rootMargin:"0px 0px -40px 0px"});
+
+  document.querySelectorAll(".videoIcon").forEach(el=> io.observe(el));
 }
 
 function openVideo(index){
   const v=videos[index];
   const id=getYouTubeId(v.url);
   videoTitle.textContent=v.name;
-  iframeBox.innerHTML=`
-    <iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0"
-    allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-  grid.style.display="none";
-  playerWrap.style.display="block";
-  window.scrollTo({top:0,behavior:"smooth"});
+
+  playerLoading.style.display="flex";
+  iframeBox.innerHTML="";
+
+  const iframe = document.createElement("iframe");
+  iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+  iframe.allow = "autoplay; encrypted-media";
+  iframe.allowFullscreen = true;
+  iframe.addEventListener("load", ()=>{ playerLoading.style.display="none"; });
+  iframeBox.appendChild(iframe);
+
+  overlay.classList.add("open");
+  requestAnimationFrame(()=> overlay.classList.add("visible"));
+  document.body.style.overflow="hidden";
 }
 
-function backToList(){
-  iframeBox.innerHTML="";
-  playerWrap.style.display="none";
-  grid.style.display="grid";
+function closePlayer(){
+  overlay.classList.remove("visible");
+  document.body.style.overflow="";
+  setTimeout(()=>{
+    overlay.classList.remove("open");
+    iframeBox.innerHTML="";
+  }, 300);
 }
+
+overlay.addEventListener("click", (e)=>{ if(e.target===overlay) closePlayer(); });
+document.addEventListener("keydown", (e)=>{ if(e.key==="Escape" && overlay.classList.contains("open")) closePlayer(); });
 
 render();
 </script>
